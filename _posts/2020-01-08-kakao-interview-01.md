@@ -61,4 +61,7 @@ tags: [Job]
 
 이 때도 카카오가 지정하는 날짜에 보는 것이 아닌 협의를 통해 날짜를 정하게 된다. 
 
-[2편에서 계속](https://g-onl.github.io/job/kakao-interview-02)
+[2편에서 계속](https://g-onl.github.io/job/2020/01/08/kakao-interview-02)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTI0MTYyOTM2NV19
+-->
