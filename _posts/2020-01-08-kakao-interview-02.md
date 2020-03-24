@@ -13,7 +13,7 @@ description: >
 ![1](https://user-images.githubusercontent.com/22094017/71953113-803e4f00-3224-11ea-80e8-2198c7e17f0b.png)
 
 
-[전편](https://g-onl.github.io/job/kakao-interview-01)
+[전편](https://g-onl.github.io/job/2020/01/08/kakao-interview-01)
 
 원격 인터뷰의 날짜를 잡고 나서 해당 날짜의 해당 시간에 전화가 오게 된다.
 
@@ -58,3 +58,6 @@ description: >
 (참고로, 1차 면접 이후에서 떨어질 경우에는 1년간 개발자 직군에 지원이 불가하다.)
 
 카카오는 다음 기회에...
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDY3MzIwMThdfQ==
+-->
