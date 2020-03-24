@@ -1,0 +1,422 @@
+I"�y<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+<ol id="markdown-toc">
+  <li><a href="#adding-a-page" id="markdown-toc-adding-a-page">Adding a page</a></li>
+  <li><a href="#adding-an-entry-to-the-sidebar" id="markdown-toc-adding-an-entry-to-the-sidebar">Adding an entry to the sidebar</a>    <ol>
+      <li><a href="#adding-a-link-to-an-external-page-to-the-sidebar" id="markdown-toc-adding-a-link-to-an-external-page-to-the-sidebar">Adding a link to an external page to the sidebar</a></li>
+    </ol>
+  </li>
+  <li><a href="#adding-a-category-or-tag" id="markdown-toc-adding-a-category-or-tag">Adding a category or tag</a>    <ol>
+      <li><a href="#recap-tags-and-categories-in-jekyll" id="markdown-toc-recap-tags-and-categories-in-jekyll">Recap: Tags and categories in Jekyll</a></li>
+      <li><a href="#tags-and-categories-in-hydejack" id="markdown-toc-tags-and-categories-in-hydejack">Tags and categories in Hydejack</a></li>
+      <li><a href="#creating-a-new-category-or-tag" id="markdown-toc-creating-a-new-category-or-tag">Creating a new category or tag</a></li>
+    </ol>
+  </li>
+  <li><a href="#adding-an-about-page" id="markdown-toc-adding-an-about-page">Adding an about page</a></li>
+  <li><a href="#adding-a-welcome-page" id="markdown-toc-adding-a-welcome-page">Adding a welcome page*</a></li>
+  <li><a href="#adding-a-projects-page" id="markdown-toc-adding-a-projects-page">Adding a projects page*</a></li>
+  <li><a href="#adding-a-project" id="markdown-toc-adding-a-project">Adding a project*</a></li>
+  <li><a href="#adding-a-resume" id="markdown-toc-adding-a-resume">Adding a resume*</a></li>
+</ol>
+
+<h2 id="adding-a-page">Adding a page</h2>
+<p>You can add generic pages that support markdown content but aren’t blog posts.
+For example, this documentation is written in markdown, consisting of several generic pages.</p>
+
+<p>To add a page, create a new markdown file and put <code class="highlighter-rouge">layout: page</code> in a front matter</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">page</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">Documentation</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Now you can add content as you would in a blog post.</p>
+
+<h2 id="adding-an-entry-to-the-sidebar">Adding an entry to the sidebar</h2>
+<p>Hydejack’s sidebar can add links to any page within the site. In order for a page to appear in the sidebar, it needs to have a truthy <code class="highlighter-rouge">menu</code> value defined in its front matter. The page also needs to have a <code class="highlighter-rouge">title</code>, otherwise the entry in the sidebar will be blank.</p>
+
+<p>If you want the link to appear at a particular position, you can set a numeric value to the <code class="highlighter-rouge">order</code> key.
+However, the page is not guaranteed to appear in the 5th position when you set a value of <code class="highlighter-rouge">5</code>,
+since it will only use that number to sort the pages.
+The position of a page also depends on the <code class="highlighter-rouge">order</code> of all other pages in the sidebar.</p>
+
+<p>If you don’t want to spread the sidebar definitions across multiple markdown files,
+you can manage them centrally in your config file using front matter defaults, e.g.:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _config.yml</span>
+<span class="na">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">blog.md</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">menu</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">order</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">projects.md</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">menu</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">order</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">resume.md</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">menu</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">order</span><span class="pi">:</span> <span class="m">3</span>
+  <span class="pi">-</span> <span class="na">scope</span><span class="pi">:</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">about.md</span>
+    <span class="na">values</span><span class="pi">:</span>
+      <span class="na">menu</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">order</span><span class="pi">:</span> <span class="m">4</span>
+</code></pre></div></div>
+
+<h3 id="adding-a-link-to-an-external-page-to-the-sidebar">Adding a link to an external page to the sidebar</h3>
+<p>You can add links to external pages to the sidebar by creating a new markdown file for each entry and adding to the front matter:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">External</span>
+<span class="na">redirect_to</span><span class="pi">:</span> <span class="s">https://example.com/</span>
+<span class="na">menu</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">order</span><span class="pi">:</span> <span class="m">5</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>You may combine this with the <a href="https://github.com/jekyll/jekyll-redirect-from"><code class="highlighter-rouge">jekyll-redirect-from</code></a> plugin
+to generate a redirect page at the <code class="highlighter-rouge">permalink</code> of the file, but this is optional.</p>
+
+<h2 id="adding-a-category-or-tag">Adding a category or tag</h2>
+<p>Hydejack allows you to use the <code class="highlighter-rouge">list</code> layout to show all posts of a particular tag or category.</p>
+
+<p>Before you start, make sure your config files contains the <code class="highlighter-rouge">featured_tags</code> and <code class="highlighter-rouge">features_categories</code> collections:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _config.yml</span>
+<span class="na">collections</span><span class="pi">:</span>
+  <span class="na">featured_categories</span><span class="pi">:</span>
+    <span class="na">permalink</span><span class="pi">:</span>         <span class="s">/category/:name/</span>
+    <span class="na">output</span><span class="pi">:</span>            <span class="no">true</span>
+  <span class="na">featured_tags</span><span class="pi">:</span>
+    <span class="na">permalink</span><span class="pi">:</span>         <span class="s">/tag/:name/</span>
+    <span class="na">output</span><span class="pi">:</span>            <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="recap-tags-and-categories-in-jekyll">Recap: Tags and categories in Jekyll</h3>
+<p>Posts in Jekyll can belong to one or more categories, as well as one or more tags. They are defined in a post’s front matter:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span>     <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>      <span class="s">Welcome to Jekyll</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">jekyll</span><span class="pi">,</span> <span class="nv">update</span><span class="pi">]</span>
+<span class="na">tags</span><span class="pi">:</span>       <span class="pi">[</span><span class="nv">jekyll</span><span class="pi">,</span> <span class="nv">update</span><span class="pi">]</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Posts can also be assigned to a category based on their position within the folder structure, e.g.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── jekyll
+│   └── update
+│       └── _posts
+│           └── 2017-04-07-welcome-to-jekyll.markdown
+</code></pre></div></div>
+
+<p>would place “Welcome to Jekyll” in the categories <code class="highlighter-rouge">jekyll</code> and <code class="highlighter-rouge">update</code>.
+Whether you use this method or not, categories will always be part of a posts URL, while tags will not.</p>
+
+<table class="scroll-table-small">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Categories</td>
+      <td><code class="highlighter-rouge">/jekyll/update/2017/04/07/welcome-to-jekyll/</code></td>
+    </tr>
+    <tr>
+      <td>Tags</td>
+      <td><code class="highlighter-rouge">/2017/04/07/welcome-to-jekyll/</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As far as Jekyll is concerned, these are the only differences.</p>
+
+<h3 id="tags-and-categories-in-hydejack">Tags and categories in Hydejack</h3>
+<p>Categories and tags are displayed by Hydejack below the title, after the date. Categories are displayed with the preposition “in”, while tags are displayed with the preposition “on”, e.g.</p>
+
+<table class="scroll-table-small">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Categories</td>
+      <td>Welcome to Jekyll¬ 07 Apr 2017 <strong>in</strong> Jekyll / Update</td>
+    </tr>
+    <tr>
+      <td>Tags</td>
+      <td>Welcome to Jekyll¬ 07 Apr 2017 <strong>on</strong> Jekyll, Update</td>
+    </tr>
+    <tr>
+      <td>Both</td>
+      <td>Welcome to Jekyll¬ 07 Apr 2017 <strong>in</strong> Jekyll / Update <strong>on</strong> Jekyll, Update</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="creating-a-new-category-or-tag">Creating a new category or tag</h3>
+<p>Be default, categories and tags are rendered as plain text. Further steps are necessary if you want them to link to a page that contains a list of all posts that belong to that category or tag.</p>
+
+<p>For each “featured” category or tag, a file called <code class="highlighter-rouge">&lt;categoryname&gt;.md</code> or <code class="highlighter-rouge">&lt;tagname&gt;.md</code> has to be created in <code class="highlighter-rouge">_featured_tags</code> or <code class="highlighter-rouge">_featured_categories</code>, respectively.
+Each file in these folders is part of a <a href="https://jekyllrb.com/docs/collections/">Jekyll Collection</a>.</p>
+
+<p>The the data of a category or tag is set in the files front matter, e.g.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _featured_tags/hyde.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">list</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">Hyde</span>
+<span class="na">slug</span><span class="pi">:</span>   <span class="s">hyde</span>
+<span class="na">description</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">Hyde is a brazen two-column Jekyll](http://jekyllrb.com) theme</span>
+  <span class="s">that pairs a prominent sidebar with uncomplicated content.</span>
+  <span class="s">It's based on [Poole](http://getpoole.com), the Jekyll butler.</span>
+<span class="s">---</span>
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">layout</code></dt>
+  <dd>Must be <code class="highlighter-rouge">list</code></dd>
+  <dt><code class="highlighter-rouge">title</code></dt>
+  <dd>Used as title of the page, as well as name of the category or tag as part of the line below a blog post’s title.
+Can be different from the name of the tag or category, as long as <code class="highlighter-rouge">slug</code> is identical to the name.</dd>
+  <dt><code class="highlighter-rouge">slug</code></dt>
+  <dd>Must be identical to the key used in the blog’s front matter, i.e. if you use <code class="highlighter-rouge">categories: [jekyll]</code> or <code class="highlighter-rouge">tags: [jekyll]</code>
+the <code class="highlighter-rouge">slug</code> must be <code class="highlighter-rouge">jekyll</code>. Normally the slug is derived from the title, but it is recommended that you set it explicitly.</dd>
+  <dt><code class="highlighter-rouge">description</code></dt>
+  <dd>A medium-length description, used on the tag or category’s detail page as meta description and shown in a message box below the title.</dd>
+  <dt><code class="highlighter-rouge">accent_image</code></dt>
+  <dd>URL. Will be used as fallback for all pages that belong to that category or tag.</dd>
+  <dt><code class="highlighter-rouge">accent_color</code></dt>
+  <dd>Color code. Will be used as fallback for all pages that belong to that category or tag.</dd>
+  <dt><code class="highlighter-rouge">menu</code></dt>
+  <dd>Set to to <code class="highlighter-rouge">true</code> if you want the category or tag to appear in the sidebar. For more information, see
+<a href="#adding-an-entry-to-the-sidebar">Adding an entry to the sidebar</a>.</dd>
+</dl>
+
+<p>Once the file is created, the page can be found at <code class="highlighter-rouge">/category/&lt;categoryname&gt;/</code> or <code class="highlighter-rouge">/tag/&lt;tagname&gt;/</code>.</p>
+
+<h2 id="adding-an-about-page">Adding an about page</h2>
+<p>About pages are a frequent use case, so Hydejack has a special layout for it, which is a slight modification of the <code class="highlighter-rouge">page</code> layout.
+<a href="https://qwtel.com/hydejack/about/">Demo</a>.
+The main difference is that it will display an author’s <code class="highlighter-rouge">about</code> text and <code class="highlighter-rouge">picture</code> above the regular content.</p>
+
+<p>To create an about page, make sure <code class="highlighter-rouge">layout</code> is set to <code class="highlighter-rouge">about</code>, and that the <code class="highlighter-rouge">author</code> key is set to an author defined in <code class="highlighter-rouge">_data/authors.yml</code>. For more on authors, see <a href="/docs/7.5.2/config/#adding-an-author">Adding an author</a>.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: about.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">about</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">About</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">qwtel</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<h2 id="adding-a-welcome-page">Adding a welcome page*</h2>
+<p>If you bought the PRO version of Hydejack you have access to the <code class="highlighter-rouge">welcome</code> layout.
+It is intended to showcase your projects and blog posts in a compact way.
+Technically, it is a modified version of the <code class="highlighter-rouge">about</code> layout, so it will also show author information at the top.
+<a href="https://qwtel.com/hydejack/">Demo</a>.</p>
+
+<p>For reference, the layout/order of content on the welcome page looks like:</p>
+<ul>
+  <li>Title</li>
+  <li>Author’s about text</li>
+  <li>Content (before <code class="highlighter-rouge">content_separator</code>)</li>
+  <li>Latest/Selected Projects</li>
+  <li>Latest/Selected Posts</li>
+  <li>Content after <code class="highlighter-rouge">content_separator</code> (if any)</li>
+</ul>
+
+<p>You can create a welcome page by creating a new markdown file and setting the layout to <code class="highlighter-rouge">welcome</code> in the front matter.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: index.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">welcome</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">Welcome</span>
+<span class="na">author</span><span class="pi">:</span> <span class="s">qwtel</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Without further configuration, the welcome page will show the two most recent projects and five most recent blog posts.
+However, the welcome layout supports selecting specific projects and posts, by adding to the front matter, e.g.:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: index.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span>            <span class="s">welcome</span>
+<span class="na">title</span><span class="pi">:</span>             <span class="s">Welcome</span>
+<span class="na">selected_projects</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">_projects/hydejack-v6.md</span>
+  <span class="pi">-</span> <span class="s">_projects/hyde-v2.md</span>
+<span class="na">selected_posts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">_posts/2017-05-03-javascripten.md</span>
+  <span class="pi">-</span> <span class="s">_posts/2012-02-07-example-content.md</span>
+<span class="na">more_projects</span><span class="pi">:</span>     <span class="s">projects.md</span>
+<span class="na">more_posts</span><span class="pi">:</span>        <span class="s">posts.md</span>
+<span class="na">big_project</span><span class="pi">:</span>       <span class="no">false</span>
+<span class="na">content_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">layout</code></dt>
+  <dd>Must be <code class="highlighter-rouge">welcome</code>.</dd>
+  <dt><code class="highlighter-rouge">selected_projects</code></dt>
+  <dd>A list of paths to project files that should be displayed below the main content of the page.
+The paths are relative to the main directory with no leading <code class="highlighter-rouge">./</code>.
+If no paths are provided, the two most recent projects will be used.</dd>
+  <dt><code class="highlighter-rouge">selected_projects</code></dt>
+  <dd>A list of paths to blog posts that should be featured on the welcome page.
+The paths are relative to the main directory with no leading <code class="highlighter-rouge">./</code>.
+If no paths are provided, the five most recent posts will be used.</dd>
+  <dt><code class="highlighter-rouge">more_projects</code></dt>
+  <dd>The path to the main projects page.
+The path is relative to the main directory with no leading <code class="highlighter-rouge">./</code>.</dd>
+  <dt><code class="highlighter-rouge">more_posts</code></dt>
+  <dd>The path to the main posts page.
+The path is relative to the main directory with no leading <code class="highlighter-rouge">./</code>.</dd>
+  <dt><code class="highlighter-rouge">big_project</code></dt>
+  <dd>Optional. When <code class="highlighter-rouge">true</code>, project thumbnails will span the full width instead of half.
+This setting takes precedence over the <code class="highlighter-rouge">big_project</code> value of individual projects,
+i.e. it will apply to the entire page.</dd>
+  <dt><code class="highlighter-rouge">content_separator</code></dt>
+  <dd>Optional. Defines a marker that will be used to split the content in two parts.
+The first part will go before the “Selected/Latest Projects” and “Selected/Latest Posts” section,
+the second part will go below it.</dd>
+</dl>
+
+<h2 id="adding-a-projects-page">Adding a projects page*</h2>
+<p>The projects page will show all projects in a particular collection.
+First, you need to make sure that you have the <code class="highlighter-rouge">projects</code> collection defined in <code class="highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _config.yml</span>
+<span class="na">collections</span><span class="pi">:</span>
+  <span class="na">projects</span><span class="pi">:</span>
+    <span class="na">permalink</span><span class="pi">:</span> <span class="s">/projects/:path/</span>
+    <span class="na">output</span><span class="pi">:</span>    <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Next, add a <code class="highlighter-rouge">projects.md</code> to in the root (you can adjust the name/location to match the the <code class="highlighter-rouge">permalink</code> of the
+collection).
+This file has the <code class="highlighter-rouge">projects</code> layout (mind the “s” at the end) and should have a <code class="highlighter-rouge">show_collection</code> key,
+with the name of the collection as a value, e.g.:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: projects.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span>          <span class="s">projects</span>
+<span class="na">title</span><span class="pi">:</span>           <span class="s">Projects*</span>
+<span class="na">show_collection</span><span class="pi">:</span> <span class="s">projects</span>
+<span class="na">big_project</span><span class="pi">:</span>     <span class="no">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">layout</code></dt>
+  <dd>Must be <code class="highlighter-rouge">projects</code>.</dd>
+  <dt><code class="highlighter-rouge">title</code></dt>
+  <dd>The title of the page. Note that this name is reused as part of each individual project page
+(for the link that directs back to the projects page).</dd>
+  <dt><code class="highlighter-rouge">show_collection</code></dt>
+  <dd>The name of the collection you want display on this page. Defaults to <code class="highlighter-rouge">projects</code>.</dd>
+  <dt><code class="highlighter-rouge">big_project</code></dt>
+  <dd>Optional. When <code class="highlighter-rouge">true</code>, project thumbnails will span the full width, instead of only half.
+This setting takes precedence over the <code class="highlighter-rouge">big_project</code> value of individual projects,
+i.e. it will apply to the entire page.</dd>
+</dl>
+
+<h2 id="adding-a-project">Adding a project*</h2>
+<p>Projects are organized using <a href="https://jekyllrb.com/docs/collections/">Jekyll Collections</a>.
+Each project generates an entry on the projects layout (<a href="https://qwtel.com/hydejack/projects/">Demo</a>) as well as its own detail page (<a href="https://qwtel.com/hydejack/projects/hydejack-v6/">Demo</a>).</p>
+
+<p>Each project is defined by a file in the <code class="highlighter-rouge">_projects</code> directory.
+The project’s meta information is defined in the file’s front matter. You can also add markdown content.
+A project’s front matter may look like:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _projects/hyde-v2.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span>      <span class="s">project</span>
+<span class="na">title</span><span class="pi">:</span>       <span class="s">Hyde v2*</span>
+<span class="na">date</span><span class="pi">:</span>        <span class="s">2 Jan </span><span class="m">2014</span>
+<span class="na">screenshot</span><span class="pi">:</span>
+  <span class="na">src</span><span class="pi">:</span>       <span class="s">/assets/img/projects/hyde-v2@0,25x.jpg</span>
+  <span class="na">srcset</span><span class="pi">:</span>
+    <span class="na">1920w</span><span class="pi">:</span>   <span class="s">/assets/img/projects/hyde-v2.jpg</span>
+    <span class="na">960w</span><span class="pi">:</span>    <span class="s">/assets/img/projects/hyde-v2@0,5x.jpg</span>
+    <span class="na">480w</span><span class="pi">:</span>    <span class="s">/assets/img/projects/hyde-v2@0,25x.jpg</span>
+<span class="na">caption</span><span class="pi">:</span>     <span class="s">Hyde is a brazen two-column Jekyll theme.</span>
+<span class="na">description</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content.</span>
+  <span class="s">It's based on [Poole](http://getpoole.com), the Jekyll butler.</span>
+<span class="na">links</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span>   <span class="s">Demo</span>
+    <span class="na">url</span><span class="pi">:</span>     <span class="s">http://hyde.getpoole.com</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span>   <span class="s">Source</span>
+    <span class="na">url</span><span class="pi">:</span>     <span class="s">https://github.com/poole/hyde</span>
+<span class="na">author</span><span class="pi">:</span>      <span class="s">mdo</span>
+<span class="na">big_project</span><span class="pi">:</span> <span class="no">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">layout</code></dt>
+  <dd>Must be set to <code class="highlighter-rouge">project</code></dd>
+  <dt><code class="highlighter-rouge">date</code></dt>
+  <dd>Providing a year is the minimum requirement. Used to sort the projects.</dd>
+  <dt><code class="highlighter-rouge">screenshot</code></dt>
+  <dd>A 16:9 screenshot of the project. You can pass a URL to an image, but it is recommended that you provide an entire <code class="highlighter-rouge">srcset</code> (see above). Hydejack will show the screenshot in various sizes, depending on the screen width, so that no specific size will fit all. Instead it is recommended that you use a <a href="https://en.wikipedia.org/wiki/Mipmap">mipmap</a>-like approach, providing the image in multiple sizes, each image half the width of the previous one. The <code class="highlighter-rouge">src</code> key is a fallback image for browsers that don’t support the <code class="highlighter-rouge">srcset</code> attribute. The keys of the <code class="highlighter-rouge">srcset</code> hash will be used as descriptors.
+For more information on <code class="highlighter-rouge">srcset</code>, see the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset">documentation at MDN</a>, or <a href="https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/">this article from CSS-Tricks</a>.</dd>
+  <dt><code class="highlighter-rouge">caption</code></dt>
+  <dd>A short description, shown as part of each “project card” in the <code class="highlighter-rouge">projects</code> layout.</dd>
+  <dt><code class="highlighter-rouge">description</code></dt>
+  <dd>A medium-length description, used on the project’s detail page as meta description and shown as message box below he screenshot.</dd>
+  <dt><code class="highlighter-rouge">links</code></dt>
+  <dd>A list of <code class="highlighter-rouge">title</code>-<code class="highlighter-rouge">url</code> pairs that link to external resources related to this project.</dd>
+  <dt><code class="highlighter-rouge">author</code></dt>
+  <dd>Optional. Shown below the project, similar to posts.</dd>
+  <dt><code class="highlighter-rouge">big_project</code></dt>
+  <dd>Optional. When <code class="highlighter-rouge">true</code>, the project preview will span the full content width. You can use this for projects that you want to direct additional attention to. You can set/override this for an entire page, by setting <code class="highlighter-rouge">big_project</code> in the front matter (applies to the <code class="highlighter-rouge">projects</code> and <code class="highlighter-rouge">welcome</code> layout).</dd>
+</dl>
+
+<h2 id="adding-a-resume">Adding a resume*</h2>
+<p>Hydejack’s PRO version features a generalized resume layout.
+<a href="https://qwtel.com/hydejack/resume/">Demo</a>.</p>
+
+<p>It generates the resume page from a valid <a href="https://jsonresume.org/">JSON Resume</a>, which is good news if you already have a JSON resume. Otherwise, there are various ways of obtaining one:</p>
+
+<ul>
+  <li>You can use the visual <a href="http://registry.jsonresume.org/">JSON Resume Editor</a>.</li>
+  <li>If you have a LinkedIn profile, you can try <a href="https://jmperezperez.com/linkedin-to-json-resume/">LinkedIn to Json Résumé</a>.</li>
+  <li>You can edit the <a href="https://github.com/qwtel/hydejack/blob/master/_data/resume.json">example <code class="highlighter-rouge">resume.json</code></a> in the <code class="highlighter-rouge">_data</code> directly. It contains example entries for each type of entry.</li>
+</ul>
+
+<p>Once you have a JSON Resume, place it into <code class="highlighter-rouge">_data</code>.</p>
+
+<p>If you prefer editing YAML files, there is an <a href="https://github.com/qwtel/hydejack/blob/master/_data/_resume.yml">example <code class="highlighter-rouge">_resume.yml</code></a> file in <code class="highlighter-rouge">_data</code>.
+In order to use it, rename it to <code class="highlighter-rouge">resume.yml</code> and delete <code class="highlighter-rouge">resume.json</code>.</p>
+
+<p>To render the resume page, create a new markdown file and set the layout to <code class="highlighter-rouge">resume</code> in the front matter:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: resume.md</span>
+<span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">resume</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s">Resume</span>
+<span class="na">description</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">A short description of the page for search engines (~150 characters long).</span>
+<span class="s">---</span>
+</code></pre></div></div>
+
+<p class="message"><strong>NOTE</strong>: You can download the final <code class="highlighter-rouge">resume.json</code> (minified) from the assets folder. When running locally, you can find it at <code class="highlighter-rouge">_site/assets/resume.json</code>.</p>
+
+<p class="read-more">Continue with <a href="/docs/7.5.2/writing/" class="heading flip-title">Writing</a></p>
+
+:ET

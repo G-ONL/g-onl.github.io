@@ -1,0 +1,44 @@
+I"w<p>This major release increases page load speed dramatically.
+The page now scores roughly 90/100 on <a href="https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fqwtel.com%2Fhydejack%2F">Google’s PageSpeed Insights</a> (up from ~50) and
+has a high score on similar tools.</p>
+
+<p class="message"><strong>NOTE</strong>: This post is outdated and only included for legacy reasons.
+See the <a href="/docs/7.5.2/" class="heading flip-title">Documentation</a> for up-to-date instructions.</p>
+
+<p>Most importantly, the critical rendering path is no longer blocked by loading styles or scripts,
+meaning the site becomes visible faster.</p>
+
+<p>Page load speed matters to Google, but is also <em>very</em> apparent to visitors with slow internet connections.</p>
+
+<p>However, as a side effect of these optimizations, the site now has a visible <abbr title="Flash Of Unstyled Content">FOUC</abbr>.
+Future versions might address this,
+but it is the currency in which loading speed is being payed for and can not be fully avoided.</p>
+
+<h2 id="major">Major</h2>
+
+<ul>
+  <li>HTML, CSS and JS served minified.</li>
+  <li>JS downloading starts only after the rest of the page is rendered.</li>
+  <li>Critical CSS (above-the-fold) is inlined into the document, the rest is fetched later.</li>
+</ul>
+
+<p>In order to minify the CSS and make it more modular it has been rewritten in SCSS.</p>
+
+<h2 id="minor">Minor</h2>
+
+<ul>
+  <li>Colored focus outline in page color</li>
+  <li>Tabindex for tab navigation</li>
+  <li>Social media icons easier tappable with finger</li>
+</ul>
+
+<h2 id="trivia">Trivia</h2>
+
+<p>Not strictly part of the release, but the images have been blurred to increase text readability and
+help with loading speed as well (burred images get compressed by JPG much better).</p>
+
+<hr />
+
+<p><a href="https://github.com/qwtel/hydejack/releases">Get <em>The Fast One</em> on GitHub</a></p>
+
+:ET

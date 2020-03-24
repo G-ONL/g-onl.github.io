@@ -1,0 +1,13 @@
+I"n<h2 id="breaking">Breaking</h2>
+<ul>
+  <li>Structure of <code class="highlighter-rouge">_config.yml</code> has changed
+    <ul>
+      <li>Social media usernames are now located under <code class="highlighter-rouge">author: social: &lt;platform&gt;: &lt;username&gt;</code>.</li>
+      <li><code class="highlighter-rouge">disqus</code> is now a top-level entry (moved from <code class="highlighter-rouge">author</code>).</li>
+      <li>Now has <code class="highlighter-rouge">font</code>, <code class="highlighter-rouge">font_accent</code> and <code class="highlighter-rouge">google_fonts</code> fields that are mandatory.</li>
+    </ul>
+  </li>
+  <li>Now defaults to the <code class="highlighter-rouge">blog</code> layout, old style is available via <code class="highlighter-rouge">blog-by-tag</code> layout, see <code class="highlighter-rouge">archive.html</code>.</li>
+</ul>
+
+:ET

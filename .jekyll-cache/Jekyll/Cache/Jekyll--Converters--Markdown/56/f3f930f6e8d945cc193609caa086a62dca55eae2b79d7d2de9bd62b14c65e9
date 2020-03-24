@@ -1,0 +1,72 @@
+I"�<p>This release makes including third party plugins easier.
+Until now, the push state approach to loading new pages has been interfering with embedded <code class="highlighter-rouge">script</code> tags.
+This version changes this by simulating the sequential loading of script tags on a fresh page load.</p>
+
+<p>This approach should work in a majority of cases, but can still cause problems with scripts that can’t be added more than once per page.
+If an issue can’t be resolved, there’s now the option to disable push state by setting <code class="highlighter-rouge">disable_push_state: true</code> in <code class="highlighter-rouge">config.yml</code>.</p>
+
+<h2 id="whats-happening">What’s happening?</h2>
+<p>The problem is as follows:
+When the browser encounters a <code class="highlighter-rouge">script</code> tag while parsing a HTML page it will stop (possibly to make a request to fetch
+an external script) and then execute the code before continuing parsing the page
+(it’s easy to how this can make your page really slow, but that’s a different topic).</p>
+
+<p>In any case, due of this behavior you can do things like include jQuery,
+then run code that depends on jQuery in the next script tag:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">".../jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#tabs</span><span class="dl">'</span><span class="p">).</span><span class="nx">someJQueryFunction</span><span class="p">();</span> <span class="c1">// works</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>I’d consider this an anti-pattern for the reason mentioned above,
+but it remains common and has the advantage of being easy to understand.</p>
+
+<p>However, things break when Hydejack dynamically inserts new content into the page.
+It works fine for standard markdown content like <code class="highlighter-rouge">p</code> tags,
+but when inserting <code class="highlighter-rouge">script</code> tags the browser will execute them immediately and in parallel,
+because in most cases this is what you’d want.
+However, this means that <code class="highlighter-rouge">$('#tabs').someJQueryFunction();</code> will run while the HTTP request for jQuery is still
+in progress — and we get an error that <code class="highlighter-rouge">$</code> isn’t defined, or similar.</p>
+
+<p>From this description the solution should be obvious: Insert the <code class="highlighter-rouge">script</code> tags one-by-one,
+to simulate how they would get executed if it was a fresh page request.
+In fact this is how Hydejack is now handling things (and thanks to rxjs’ <code class="highlighter-rouge">concatMap</code> it was easy to implement),
+but unfortunately this is not a magic solution that can fix all problems:</p>
+
+<ul>
+  <li>Some scripts may throw when running on the same page twice</li>
+  <li>Some scripts rely on the document’s <code class="highlighter-rouge">load</code> event, which has fired long before the script was inserted</li>
+  <li>unkown-unkowns</li>
+</ul>
+
+<p>But what will “magically” solve all third party script problems, is disabling dynamic page loading altogether,
+for which there’s now an option.
+To make this a slightly less bitter pill to swallow,
+there’s now a CSS-only “intro” animation that looks similar to the dynamic one.
+Maybe you won’t even notice the difference.</p>
+
+<h2 id="patch-notes">Patch Notes</h2>
+<h3 id="minor">Minor</h3>
+<ul>
+  <li>Support embedding <code class="highlighter-rouge">script</code> tags in markdown content</li>
+  <li>Add <code class="highlighter-rouge">disable_push_state</code> option to <code class="highlighter-rouge">_config.yml</code></li>
+  <li>Add <code class="highlighter-rouge">disable_drawer</code> option to <code class="highlighter-rouge">_config.yml</code></li>
+  <li>Rename syntax highlighting file to <code class="highlighter-rouge">syntax.scss</code></li>
+  <li>Added <a href="/docs/7.5.2/scripts/">chapter on third party scripts</a> to documentation</li>
+</ul>
+
+<h3 id="design">Design</h3>
+<ul>
+  <li>Add subtle intro animation</li>
+  <li>Rename “Check out X for more” to “See X for more” on welcome* page</li>
+  <li>Replace “»” with “→” in “read more”-type of links</li>
+</ul>
+
+<h3 id="fixes">Fixes</h3>
+<ul>
+  <li>Fix default color in gem-based theme</li>
+</ul>
+
+:ET

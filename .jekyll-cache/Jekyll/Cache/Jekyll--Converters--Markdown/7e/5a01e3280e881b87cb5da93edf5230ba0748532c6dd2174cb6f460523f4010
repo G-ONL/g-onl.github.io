@@ -1,0 +1,8 @@
+I"q<p>This maintenance release includes various quality-of-life improvements,
+especially when using the gem-based version of the theme.
+These changes come in handy when using Hydejack for a quick (project-) page:
+The <code class="highlighter-rouge">home</code> layout, which is used when using <code class="highlighter-rouge">jekyll new</code>,
+is now a proper layout that displays a few posts/pages below the regular content,
+and it is again possible to define an author in <code class="highlighter-rouge">_config.yml</code>
+without setting up a <code class="highlighter-rouge">_data</code> directory (for more, see blow).</p>
+:ET

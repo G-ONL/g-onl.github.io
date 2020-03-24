@@ -1,0 +1,46 @@
+I"Ô<h2 id="breaking">Breaking</h2>
+<ul>
+  <li>Structure of <code class="highlighter-rouge">_config.yml</code> has changed
+    <ul>
+      <li>Social media usernames are now located under <code class="highlighter-rouge">author: social: &lt;platform&gt;: &lt;username&gt;</code>.</li>
+      <li><code class="highlighter-rouge">disqus</code> is now a top-level entry (moved from <code class="highlighter-rouge">author</code>).</li>
+      <li>Now has <code class="highlighter-rouge">font</code>, <code class="highlighter-rouge">font_accent</code> and <code class="highlighter-rouge">google_fonts</code> fields that are mandatory.</li>
+    </ul>
+  </li>
+  <li>Now defaults to the <code class="highlighter-rouge">blog</code> layout, old style is available via <code class="highlighter-rouge">blog-by-tag</code> layout, see <code class="highlighter-rouge">archive.html</code>.</li>
+</ul>
+
+<!--more-->
+
+<p class="message"><strong>NOTE</strong>: This post is outdated and only included for legacy reasons.
+See the <a href="/docs/7.5.2/" class="heading flip-title">Documentation</a> for up-to-date instructions.</p>
+
+<h2 id="new-features">New features</h2>
+<ul>
+  <li>Added <em>a lot</em> of social media icons, configurable via <code class="highlighter-rouge">_config.yml</code>.</li>
+  <li>New <code class="highlighter-rouge">blog</code> layout. Classic, paginated.</li>
+  <li>Fonts are configurable via <code class="highlighter-rouge">_config.yml</code>.</li>
+</ul>
+
+<h2 id="design">Design</h2>
+<ul>
+  <li>Link underlines are now fixed-sized for all font sizes (no thicker lines for headlines, etc)</li>
+</ul>
+
+<h2 id="fixes">Fixes</h2>
+<ul>
+  <li>Correctly set the meta description field using either the <code class="highlighter-rouge">description</code> field or <code class="highlighter-rouge">post.excerpt</code> as a fallback (used
+to contain the unmodified markdown).</li>
+  <li>Fixed various URL bugs relating to <code class="highlighter-rouge">site.baseurl</code>.</li>
+</ul>
+
+<h2 id="internal">Internal</h2>
+<ul>
+  <li>Refactoring, preventing code duplications, heavier usage of <code class="highlighter-rouge">includes</code>.</li>
+</ul>
+
+<hr />
+
+<p><a href="https://github.com/qwtel/hydejack/releases">Get <em>Social Media Impocalypse</em> on GitHub</a></p>
+
+:ET

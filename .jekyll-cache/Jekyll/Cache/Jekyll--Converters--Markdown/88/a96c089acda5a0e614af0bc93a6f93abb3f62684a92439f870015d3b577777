@@ -1,0 +1,61 @@
+I"�<p>Hydejack has always featured a JavaScript-heavy sidebar, but other than that, JS has been used sparingly.
+This changes with this release, which adds a ton of (optional) code that changes the feel of the theme dramatically.</p>
+
+<h2 id="major">Major</h2>
+<p>Pages are now loaded and swapped through JavaScript. This has a number of effects.
+First of all, it looks cool, but the animations aren’t just about aesthetics:
+They also help to hide the network time of fetching the next page, making the entire site feel faster.
+At the same time, the <abbr title="Flash of Unstyled Content">FOUC</abbr> introduced in the last release will no longer occur (except on the initial page load).</p>
+
+<ul>
+  <li>Most JS is now unified in the <code class="highlighter-rouge">_js</code> directory and written in ES2016.</li>
+  <li>The <code class="highlighter-rouge">blog-by-tag</code> layout has been renamed to <code class="highlighter-rouge">list</code>.</li>
+  <li><code class="highlighter-rouge">public</code> folder has been renamed to <code class="highlighter-rouge">assets</code> to make the theme compatible with Jekyll’s gem-based themes.</li>
+  <li>Tags are now supported via Jekyll Collections instead of <code class="highlighter-rouge">_data</code>.</li>
+  <li>The sidebar can now add links to all kinds of pages.</li>
+  <li>Categories are now supported.</li>
+  <li>Author information moved to <code class="highlighter-rouge">_data/authors.yml</code></li>
+  <li>Added support for multiple authors.</li>
+  <li>Using <code class="highlighter-rouge">jekyll-feed</code> plugin (supported on GitHub Pages) instead of custom solution.</li>
+  <li>Added <code class="highlighter-rouge">about</code> layout.</li>
+  <li>Added <code class="highlighter-rouge">not-found</code> layout.</li>
+  <li>Added <code class="highlighter-rouge">redirect</code> layout</li>
+</ul>
+
+<p>See the <a href="/docs/7.5.2/upgrade/">the migration guide</a> for instructions on how to upgrade.</p>
+
+<h2 id="minor">Minor</h2>
+<ul>
+  <li>The “accent” font (heading font) is now used for all headings.
+This gives the theme a “bolder” look and was necessary for the animation: link =&gt; heading.</li>
+  <li>Changed default text font from “PT Serif” to “Noto Serif”.</li>
+  <li>Added <a href="/docs/7.5.2/writing/">CSS classes</a> for styling markdown content.</li>
+  <li>Links have a new style.
+They now always display an underline to make the choice of the link color less critical (darker colors were hard to
+distinguish from regular text).</li>
+  <li>Made social media icons larger and easier to tap.</li>
+  <li>Social media icons are now also part of the “about” sections of a post.</li>
+  <li>Added support for a copyright notice at the bottom. Can be set via the config variable <code class="highlighter-rouge">copyright</code>.</li>
+  <li>Changed responsive breakpoints and added support for very large displays.</li>
+  <li>The site is now printable.</li>
+  <li>The <code class="highlighter-rouge">blog</code> layout now only shows the excerpt instead of the full post.</li>
+  <li>Links to external pages are now marked with a symbol.</li>
+  <li>Added margin above social media icons to prevent accidental tapping</li>
+  <li>Added gem files so that <code class="highlighter-rouge">bundle install</code> and <code class="highlighter-rouge">bundle exec jekyll serve</code> work</li>
+  <li>Disabled HTML minification when running via <code class="highlighter-rouge">jekyll serve</code></li>
+  <li>Added dingbat to signal end of post</li>
+</ul>
+
+<h2 id="fixes">Fixes</h2>
+<ul>
+  <li>Related posts is no longer blank for posts that do not belong to a category.</li>
+  <li>Footnotes now use the text version of “leftwards arrow with hook” instead of the emoji on iOS.</li>
+  <li>Text is no longer invisible while waiting for Google Fonts to load.</li>
+  <li>Always show scrollbar to prevent layout “jumps”</li>
+</ul>
+
+<hr />
+
+<p><a href="https://github.com/qwtel/hydejack/releases/tag/v7.5.2">Get <em>JavaScripten</em> on GitHub</a></p>
+
+:ET

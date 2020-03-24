@@ -1,0 +1,68 @@
+I"w<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+<ol id="markdown-toc">
+  <li><a href="#via-gem" id="markdown-toc-via-gem">Via gem</a></li>
+  <li><a href="#via-zip" id="markdown-toc-via-zip">Via zip</a></li>
+  <li><a href="#via-git" id="markdown-toc-via-git">Via git</a></li>
+  <li><a href="#pro-version" id="markdown-toc-pro-version">PRO Version</a>    <ol>
+      <li><a href="#pro-via-github-advanced" id="markdown-toc-pro-via-github-advanced">PRO via GitHub (advanced)</a></li>
+    </ol>
+  </li>
+</ol>
+
+<p class="message"><strong>NOTE</strong>: Before upgrading to v7+, make sure you’ve read the <a href="/CHANGELOG/" class="heading flip-title">CHANGELOG</a>,
+especially the part about the <a href="/CHANGELOG/#license-change">license change</a>!</p>
+
+<h2 id="via-gem">Via gem</h2>
+<p>Upgrading the the gem-based theme is as easy as running</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle update jekyll-theme-hydejack
+</code></pre></div></div>
+
+<h2 id="via-zip">Via zip</h2>
+<p>Upgrading via zip is a bit of a dark art, specially if you’ve made changes to any source files,
+and the prime reason why I suggest using the gem-based version of the theme.</p>
+
+<p>Generally, you’ll want to copy these files and folders:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">_includes/</code></li>
+  <li><code class="highlighter-rouge">_layouts/</code></li>
+  <li><code class="highlighter-rouge">_sass/</code></li>
+  <li><code class="highlighter-rouge">assets/</code></li>
+  <li><code class="highlighter-rouge">Gemfile</code></li>
+  <li><code class="highlighter-rouge">Gemfile.lock</code></li>
+</ul>
+
+<p>and merge them with your existing folder. However, you’ll also want to check out <code class="highlighter-rouge">_data</code> and <code class="highlighter-rouge">_config.yml</code> for any changes
+and read latest entries to the <a href="/CHANGELOG/" class="heading flip-title">CHANGELOG</a>.</p>
+
+<p class="message"><strong>NOTE</strong>: If you’ve modified any of Hydejack’s internal files, your changes will most likely be overwritten
+and you have to apply them again.
+Make sure you’ve made a backup before overwriting any files.</p>
+
+<h2 id="via-git">Via git</h2>
+<p>The latest version sits on the <code class="highlighter-rouge">master</code> branch of <a href="https://github.com/qwtel/hydejack">qwtel/hydejack</a>.
+To apply them to your repository run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add hydejack git@github.com:qwtel/hydejack.git
+<span class="nv">$ </span>git pull hydejack master
+</code></pre></div></div>
+
+<h2 id="pro-version">PRO Version</h2>
+<p>Buyers of the PRO version will find the files necessary for an upgrade in the <code class="highlighter-rouge">upgrade</code> folder of the downloaded zip archive.</p>
+
+<p class="message"><strong>NOTE</strong>: If you’ve modified any of Hydejack’s internal files, your changes will most likely be overwritten
+and you have to apply them again.
+Make sure you’ve made a backup before overwriting any files.</p>
+
+<p>The archive also contains <code class="highlighter-rouge">.patch</code> files, that you can apply to your repository via <a href="https://git-scm.com/docs/git-apply">git-apply</a>.
+Using this method, git will generate merge conflicts when changes in the patch conflict with any of your changes.</p>
+
+<h3 id="pro-via-github-advanced">PRO via GitHub (advanced)</h3>
+<p>If you’ve followed the steps <a href="/docs/7.5.2/install/#pro-via-github-advanced">here</a>, all you need to upgrade is:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle update jekyll-theme-hydejack-pro
+</code></pre></div></div>
+
+<p class="read-more">Continue with <a href="/docs/7.5.2/config/" class="heading flip-title">Config</a></p>
+:ET

@@ -1,0 +1,110 @@
+I"4$<p>This maintenance release includes various quality-of-life improvements,
+especially when using the gem-based version of the theme.
+These changes come in handy when using Hydejack for a quick (project-) page:
+The <code class="highlighter-rouge">home</code> layout, which is used when using <code class="highlighter-rouge">jekyll new</code>,
+is now a proper layout that displays a few posts/pages below the regular content,
+and it is again possible to define an author in <code class="highlighter-rouge">_config.yml</code>
+without setting up a <code class="highlighter-rouge">_data</code> directory (for more, see blow).</p>
+
+<p>Version 6.5 also includes smaller design adjustments.
+Most notably, the default font is now Noto Sans.
+With the benefit of hindsight,
+using a serif font in combination with the slab headings feels more like a bug in the design than anything else.
+However, should you be happy with Noto Serif (the previous default font), there is no need to worry
+— this only effects the default setting.</p>
+
+<p>For the full patch notes, read on.</p>
+
+<h2 id="patch-notes">Patch Notes</h2>
+<h3 id="added">Added</h3>
+<ul>
+  <li>
+    <p>Hydejack now uses additional Jekyll plugins by default, which make working with GitHub more convenient.
+They have been added to the <code class="highlighter-rouge">Gemfile</code> and <code class="highlighter-rouge">_config.yml</code>.
+Note that existing users need to update their <code class="highlighter-rouge">_config.yml</code>:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">gems</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-default-layout</span> <span class="c1"># new</span>
+  <span class="pi">-</span> <span class="s">jekyll-feed</span>
+  <span class="pi">-</span> <span class="s">jekyll-optional-front-matter</span> <span class="c1"># new</span>
+  <span class="pi">-</span> <span class="s">jekyll-paginate</span>
+  <span class="pi">-</span> <span class="s">jekyll-redirect-from</span>
+  <span class="pi">-</span> <span class="s">jekyll-relative-links</span> <span class="c1"># new</span>
+  <span class="pi">-</span> <span class="s">jekyll-sitemap</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Added <code class="highlighter-rouge">licenses</code> folder that includes the full license texts of licenses mentioned in <code class="highlighter-rouge">NOTICE.md</code>.</li>
+  <li>
+    <p>You can, once again, define the author in <code class="highlighter-rouge">_config.yml</code>.
+Using <code class="highlighter-rouge">_data/authors.yml</code> is still recommended (and takes precedence),
+but this option is more convenient when setting up a quick (project-) page using the gem-based theme.
+Also, a mini-version of <code class="highlighter-rouge">_data/social.yml</code> can be provided as part <code class="highlighter-rouge">_config.yml</code>, e.g.:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">author</span><span class="pi">:</span>
+  <span class="na">social</span><span class="pi">:</span>
+    <span class="na">github</span><span class="pi">:</span> <span class="s">https://github.com/qwtel/hydejack</span>
+    <span class="na">npm</span><span class="pi">:</span> <span class="s">https://www.npmjs.com/package/hydejack</span>
+    <span class="na">download</span><span class="pi">:</span> <span class="s">https://github.com/qwtel/hydejack/archive/v7.5.2.zip</span>
+
+<span class="na">data_social</span><span class="pi">:</span>
+  <span class="na">github</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">GitHub</span>
+    <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-github</span>
+  <span class="na">npm</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">npm</span>
+    <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-npm</span>
+  <span class="na">download</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Download</span>
+    <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-box-add</span>
+</code></pre></div>    </div>
+  </li>
+  <li>A download icon has been added to the default icon font and <code class="highlighter-rouge">_data/social.yml</code> has been updated.</li>
+  <li>Added <code class="highlighter-rouge">_includes/my-scripts.html</code>, <code class="highlighter-rouge">_sass/my-inline.scss</code> and <code class="highlighter-rouge">_sass/my-style.scss</code> to make it easier to add custom scripts and styles without modifying the source. This is especially handy when using the gem-based version of the theme.</li>
+</ul>
+
+<h3 id="changed">Changed</h3>
+<ul>
+  <li>Loading web fonts now starts earlier and content download no longer blocks
+swapping out the fallback font for the new font.
+Previously, a page containing lots of images could have delayed displaying the web fonts significantly.</li>
+  <li>The <code class="highlighter-rouge">home</code> layout no longer contains a message suggesting that you don’t use it.</li>
+  <li>The <code class="highlighter-rouge">home</code> layout now shows up to 5 blog posts and up to 5 pages blow the regular content.</li>
+  <li>The version history has been moved from <code class="highlighter-rouge">docs/&lt;version&gt;/versions.md</code> to <code class="highlighter-rouge">CHANGELOG.md</code>.</li>
+  <li>The license notices have been moved from <code class="highlighter-rouge">docs/&lt;version&gt;/licenses.md</code> to <code class="highlighter-rouge">NOTICE.md</code>.</li>
+  <li>Updated gem and npm dependencies</li>
+</ul>
+
+<h3 id="design">Design</h3>
+<ul>
+  <li>The default font has been changed from “Noto Serif” to “Noto Sans”.
+If you have a <code class="highlighter-rouge">font</code> entry in <code class="highlighter-rouge">_config.yml</code>, this will have no effect.</li>
+  <li><code class="highlighter-rouge">nap.jpg</code> is no longer used as default background image in the gem-based theme.</li>
+  <li>The sidebar content width is now limited to the width of the sidebar (this only effects large screens).</li>
+  <li>Project cards and pagination buttons now have slightly rounded borders for a less “rigid” look.</li>
+</ul>
+
+<h4 id="how-to-restore-the-old-styles">How to restore the old styles</h4>
+<p>If you would like to use the old font, add the following to <code class="highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">font_heading</span><span class="pi">:</span> <span class="s2">"</span><span class="s">'Roboto</span><span class="nv"> </span><span class="s">Slab',</span><span class="nv"> </span><span class="s">Helvetica,</span><span class="nv"> </span><span class="s">Arial,</span><span class="nv"> </span><span class="s">sans-serif"</span>
+<span class="na">font</span><span class="pi">:</span>         <span class="s2">"</span><span class="s">'Noto</span><span class="nv"> </span><span class="s">Serif',</span><span class="nv"> </span><span class="s">Georgia,</span><span class="nv"> </span><span class="s">serif"</span>
+<span class="na">google_fonts</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Roboto+Slab:700|Noto+Serif:400,400i,700,700i"</span>
+</code></pre></div></div>
+
+<p>If you were relying on the default setting for the background image, add the following to <code class="highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span> <span class="s">/hydejack/assets/img/nap.jpg</span>
+</code></pre></div></div>
+
+<p>Note that you have to replace <code class="highlighter-rouge">/hydejack</code> with your <code class="highlighter-rouge">baseurl</code>.</p>
+
+<p>To restore the old sidebar, open (or create) <code class="highlighter-rouge">_sass/my-inline.scss</code> and add the following:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@media</span> <span class="n">screen</span> <span class="p">{</span> <span class="nc">.sidebar-sticky</span> <span class="p">{</span> <span class="nl">left</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span> <span class="nl">max-width</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>To remove the border radius, open (or create) <code class="highlighter-rouge">_sass/my-inline.scss</code> and add the following:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.card</span><span class="o">,</span> <span class="nc">.pagination-item</span> <span class="p">{</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">0</span><span class="cp">!important</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+:ET

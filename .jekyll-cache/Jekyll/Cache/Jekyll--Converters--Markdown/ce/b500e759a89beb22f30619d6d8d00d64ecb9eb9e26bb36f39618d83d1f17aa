@@ -1,0 +1,102 @@
+I"�<h2 id="features">Features</h2>
+<p>Unlike Hyde, it’s very opinionated about how you are going to use it.</p>
+
+<p>Features include:</p>
+
+<ul>
+  <li>Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.</li>
+  <li>Github Pages compatible tag support based on <a href="http://www.minddust.com/post/tags-and-categories-on-github-pages/">this post</a>.</li>
+  <li>Customizable link color and sidebar image, per-site, per-tag and per-post.</li>
+  <li>Optional author section at the bottom of each post.</li>
+  <li>Optional comment section powered by Disqus.</li>
+  <li>Layout for posts grouped by year</li>
+  <li>Wide array of social media icons on sidebar.</li>
+  <li>Math blocks via <a href="https://khan.github.io/KaTeX/">KaTeX</a>.</li>
+</ul>
+
+<!--more-->
+
+<p class="message"><strong>NOTE</strong>: This post is outdated and only included for legacy reasons.
+See the <a href="/docs/7.5.2/" class="heading flip-title">Documentation</a> for up-to-date instructions.</p>
+
+<h2 id="download">Download</h2>
+<p>Hydejack is developed on and hosted with GitHub. Head to the <a href="https://github.com/qwtel/hydejack">GitHub repository</a>
+for downloads, bug reports, and feature requests.</p>
+
+<h2 id="sidebar">Sidebar</h2>
+<p>I love the original Hyde theme, but unfortunately the layout isn’t as great on small screens.
+Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.</p>
+
+<p>By using a drawer component I was able to retain the original two column layout.
+It’s possible to move the drawer via touch input (with the help of a little JavaScript).</p>
+
+<p>Since the background image contributes to the feel of the page I’m letting it peek over the edge a bit.
+This also provides a hint to the user that an interaction is possible.</p>
+
+<h2 id="manual">Manual</h2>
+
+<h3 id="configuration">Configuration</h3>
+<p>You can configure important aspects of the theme via
+<a href="https://github.com/qwtel/hydejack/blob/v3/_config.yml"><code class="highlighter-rouge">_config.yml</code></a>.
+This includes:</p>
+
+<ul>
+  <li>the blog description in the sidebar</li>
+  <li>the (optional) author description and photo</li>
+  <li>default image and link color of the blog</li>
+  <li>the github and twitter usernames</li>
+</ul>
+
+<h3 id="how-to-change-the-image-and-color-of-a-post">How to Change the Image and Color of a Post</h3>
+<p>In the manifest of a blog post, simply add an url as <code class="highlighter-rouge">image</code> and a CSS color as <code class="highlighter-rouge">color</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Introducing Hydejack</span>
+<span class="na">image</span><span class="pi">:</span> <span class="s">https://qwtel.com/hydejack/assets/img/hyde.jpg</span>
+<span class="na">color</span><span class="pi">:</span> <span class="s1">'</span><span class="s">#949667'</span>
+</code></pre></div></div>
+
+<h3 id="how-to-add-a-new-tag">How to Add a New Tag</h3>
+<p>Tags are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint,
+as each tag requires some setup work. I tend to think of it as categories that can be combined.</p>
+
+<ol>
+  <li>
+    <p>Add an entry to <code class="highlighter-rouge">_data/tags.yml</code>, where the key represents a slug and provide at least a <code class="highlighter-rouge">name</code> value and
+optionally <code class="highlighter-rouge">image</code>, <code class="highlighter-rouge">color</code> and <code class="highlighter-rouge">description</code>.</p>
+
+    <p>Example <code class="highlighter-rouge">/_data/tags.yml</code>:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mytag</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">My Tag</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Make a new file in the <code class="highlighter-rouge">tag</code> folder, using the same name you’ve used as the key / slug and
+change the <code class="highlighter-rouge">tag</code> and <code class="highlighter-rouge">permalink</code> entries.</p>
+
+    <p>Example <code class="highlighter-rouge">/tag/mytag.md</code>:</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">layout</span><span class="pi">:</span> <span class="s">blog-by-tag</span>
+<span class="na">tag</span><span class="pi">:</span> <span class="s">mytag</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">/tag/mytag/</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Tag your blog posts using the <code class="highlighter-rouge">tags</code> key (color and image will only depend on the first tag).</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Introducing My New Tag</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">mytag</span><span class="pi">,</span> <span class="nv">othertag</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>(optional) Add the tag to the sidebar, by adding it to <code class="highlighter-rouge">sidebar_tags</code> in <code class="highlighter-rouge">_config.yml</code>.
+They will appear in the listed order.</p>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sidebar_tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">mytag</span><span class="pi">,</span> <span class="nv">othertag</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+:ET

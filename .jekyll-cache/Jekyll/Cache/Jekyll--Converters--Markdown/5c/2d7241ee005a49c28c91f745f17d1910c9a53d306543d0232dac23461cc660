@@ -1,0 +1,148 @@
+I"�'<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+<ol id="markdown-toc">
+  <li><a href="#adding-a-custom-social-media-icon" id="markdown-toc-adding-a-custom-social-media-icon">Adding a custom social media icon</a>    <ol>
+      <li><a href="#creating-the-icon-font" id="markdown-toc-creating-the-icon-font">Creating the icon font</a></li>
+      <li><a href="#adding-the-platforms-metadata" id="markdown-toc-adding-the-platforms-metadata">Adding the platform’s metadata</a></li>
+    </ol>
+  </li>
+  <li><a href="#building-the-javascript" id="markdown-toc-building-the-javascript">Building the JavaScript</a></li>
+  <li><a href="#how-css-is-organized-in-hydejack" id="markdown-toc-how-css-is-organized-in-hydejack">How CSS is organized in Hydejack</a></li>
+</ol>
+
+<h2 id="adding-a-custom-social-media-icon">Adding a custom social media icon</h2>
+<p>Hydejack includes a number of social media icons by default (in fact, everything that is provided by <a href="https://icomoon.io/">IcoMoon</a>), but since the landscape is always changing, it is likely that a platform that is important to you will be missing at some point.</p>
+
+<p class="message"><strong>NOTE</strong>: You can add any platform by simply providing a complete URL. However, a fallback icon <span class="icon-link"></span> will be used.</p>
+
+<h3 id="creating-the-icon-font">Creating the icon font</h3>
+<p>In order to add a custom social media icon you have to use the <a href="https://icomoon.io/app/">IcoMoon App</a> (free) to create a custom icon webfont. However, it is important that the generated font include all icons already in use by Hydejack. For this purpose, find the <code class="highlighter-rouge">selection.json</code> in <a href="https://github.com/qwtel/hydejack/blob/v6/assets/icomoon/selection.json"><code class="highlighter-rouge">assets/icomoon/selection.json</code></a> and upload it to the app via “Import Icons”.
+Then, use the app to add your icon(s).
+Consult the <a href="https://icomoon.io/#docs">IcoMoon docs</a> for additional help.</p>
+
+<p>Once you’ve created and downloaded the icon font form IconMoon, replace the <code class="highlighter-rouge">icomoon</code> folder in <code class="highlighter-rouge">assets</code> in its entirety. Keep in mind that future updates of Hydejack will override this folder.</p>
+
+<h3 id="adding-the-platforms-metadata">Adding the platform’s metadata</h3>
+<p>For the second step it is necessary to add the network’s metadata to <code class="highlighter-rouge">_data/social.yml</code>.
+An entry looks like:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deviantart</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">DeviantArt</span>
+  <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-deviantart</span>
+  <span class="na">prepend</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://"</span>
+  <span class="na">append</span><span class="pi">:</span> <span class="s2">"</span><span class="s">.deviantart.com"</span>
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">name</code></dt>
+  <dd>The name of the network. Used for for the title attribute and screen readers.</dd>
+  <dt><code class="highlighter-rouge">icon</code></dt>
+  <dd>The icon CSS class. Can be chosen during the IcoMoon creation process.</dd>
+  <dt><code class="highlighter-rouge">prepend</code></dt>
+  <dd>Optional. A string that is prepended to the username to form the link to the profile. If the final URL should be <code class="highlighter-rouge">https://&lt;username&gt;.deviantart.com</code>, this would be <code class="highlighter-rouge">https://</code></dd>
+  <dt><code class="highlighter-rouge">append</code></dt>
+  <dd>Optional. A string that is appended to the username to form the link to the profile. If the final URL should be <code class="highlighter-rouge">https://&lt;username&gt;.deviantart.com</code>, this would be <code class="highlighter-rouge">.deviantart.com</code>.</dd>
+</dl>
+
+<h2 id="building-the-javascript">Building the JavaScript</h2>
+<p>In order to build the JavaScript you need to have <a href="https://nodejs.org/en/">node.js</a> installed. Specifically, the <code class="highlighter-rouge">npm</code> command needs to be available, which is part of node.js.</p>
+
+<p class="message"><strong>NOTE</strong>: Building the JavaScript is optional! Hydejack comes with a pre-built, minified <code class="highlighter-rouge">hydejack.js</code> file
+that you can find in part of the theme’s <code class="highlighter-rouge">assets</code>.</p>
+
+<p>Before you start, make sure you’ve copied the following files:</p>
+<ul>
+  <li><code class="highlighter-rouge">_js/</code></li>
+  <li><code class="highlighter-rouge">package.json</code></li>
+  <li><code class="highlighter-rouge">package-lock.json</code></li>
+  <li><code class="highlighter-rouge">.babelrc</code></li>
+  <li><code class="highlighter-rouge">.eslintignore</code></li>
+  <li><code class="highlighter-rouge">.eslintrc</code></li>
+</ul>
+
+<p>When building for the first time (and after each update of Hydejack) you have to run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>to fetch all dependencies (and put them in a local folder <code class="highlighter-rouge">node_modules</code>), lint the code and write the bundled and minified script into <code class="highlighter-rouge">assets/js/hydejack.js</code>.</p>
+
+<p>You can re-build it with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run build:js
+</code></pre></div></div>
+
+<p>If you want to actively develop the scripts, it is better to run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run watch:js
+</code></pre></div></div>
+
+<p>which will build a non-minified version of <code class="highlighter-rouge">assets/js/hydejack.js</code> after each filechange.</p>
+
+<h2 id="how-css-is-organized-in-hydejack">How CSS is organized in Hydejack</h2>
+<p>Hydejack takes a quite unique approach to CSS, which is motivated by the ability to
+inline essential CSS rules in a <code class="highlighter-rouge">style</code> tag in the <code class="highlighter-rouge">&lt;head/&gt;</code> of a page (to increase the loading speed),
+while serving the rest in a separate file.</p>
+
+<p>The styles are written in SCSS and are located in the <code class="highlighter-rouge">_sass</code> folder, which looks like</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── hydejack
+│   ├── __inline
+│   ├── __link
+│   ├── _base.pre.scss
+│   ├── ...
+│   └── _social.pre.scss
+├── pooleparty
+│   ├── __inline
+│   ├── __link
+│   ├── _base.pre.scss
+│   ├── ...
+│   └── _type.pre.scss
+├── mixins.scss
+├── my-inline.scss
+├── my-style.scss
+├── syntax.scss
+└── variables.scss
+</code></pre></div></div>
+
+<p>The style rules are organized alongside components (or rather, topics) like “sidebar” and “footer”.
+Further, there are two separate frameworks, “pooleparty” and “hydejack”,
+which grew out of the original <a href="http://getpoole.com/">Poole</a> and <a href="http://hyde.getpoole.com/">Hyde</a> projects.
+Poole/party contains more general style rules, while Hyde/jack contains those that more are specific to the theme.
+However, this separation has become more blurry over time.</p>
+
+<p>Inside those folders, you will notice the <code class="highlighter-rouge">__inline</code> and <code class="highlighter-rouge">__link</code> folders.
+The unfriendly names are intentional, because their contents are generated by a script and shouldn’t be modified directly.
+The source files are located in the same folder and end with <code class="highlighter-rouge">.pre.scss</code>.
+They are fully valid SCSS files, but contain comments that mark which lines should be inlined and which should be fetched asynchronously.</p>
+
+<p>The rules are as follows:</p>
+<ul>
+  <li>Every line between <code class="highlighter-rouge">// &lt;&lt;&lt; inline </code> and <code class="highlighter-rouge">// &gt;&gt;&gt;</code> will be inlined</li>
+  <li>Every line between <code class="highlighter-rouge">// &lt;&lt;&lt; link </code> and <code class="highlighter-rouge">// &gt;&gt;&gt;</code> will be linked</li>
+  <li>Every line that isn’t contained in a block and ends with <code class="highlighter-rouge">// inline</code> will be inlined</li>
+  <li>Every line that isn’t contained in a block and ends with <code class="highlighter-rouge">// link</code> will be linked</li>
+  <li>Every line for which none of the above applies will be included in both.</li>
+</ul>
+
+<p>The actual splitting happen with the <code class="highlighter-rouge">_scripts/build-css.sh</code> script (requires node.js 8+).
+You can run the script once by using</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run build:css
+</code></pre></div></div>
+
+<p>or rebuild the CSS on every file change</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run watch:css
+</code></pre></div></div>
+
+<p>Note that <code class="highlighter-rouge">my-inline.scss</code> and <code class="highlighter-rouge">my-style.scss</code> are not affected by this.
+Also, since all files are valid SCSS, the splitting part is entirely optional.
+If you would like to build just one regular CSS file, add</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hydejack</span><span class="pi">:</span>
+  <span class="na">no_inline_css</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>to your config file.</p>
+
+:ET

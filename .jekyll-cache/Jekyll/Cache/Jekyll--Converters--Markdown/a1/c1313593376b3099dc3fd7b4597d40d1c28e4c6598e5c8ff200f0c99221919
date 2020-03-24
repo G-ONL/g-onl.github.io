@@ -1,0 +1,88 @@
+I"�<p>In this release I’ve added a “Other Projects” section to the bottom of each project page,
+making it easier for users to navigate through your collection and discover other projects.
+Also, it’s now possible to display larger (data-) tables that were previously cut off (especially on mobile devices).</p>
+
+<p>For more on how to add tables, see the new section in <a href="/docs/7.5.2/writing/">docs/writing</a>.</p>
+
+<p>Smaller changes include a reduced usage of horizontal lines and a more “semantic” use of <code class="highlighter-rouge">hr</code> elements.
+Specifically, the semantics of the resume layout have been improved.
+This is best visualized when viewing the page with a text browser like <code class="highlighter-rouge">w3m</code>.
+For example, before 6.4 the skills section looked like</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Skills
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Web Development | Level: Master
+
+Keywords:
+
+  • HTML
+  • CSS
+  • Javascript
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Compression | Level: Master
+
+Keywords:
+
+  • Mpeg
+  • MP4
+  • GIF
+</code></pre></div></div>
+
+<p>(lots of <code class="highlighter-rouge">hr</code>s, skill level as part of the headline 😕)</p>
+
+<p>Now it looks like</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Skills
+
+Web Development
+    Level: Master
+    Keywords:
+      □ HTML
+      □ CSS
+      □ Javascript
+Compression
+    Level: Master
+    Keywords:
+      □ Mpeg
+      □ MP4
+      □ GIF
+</code></pre></div></div>
+
+<p>(using a <code class="highlighter-rouge">dl</code>, so that <code class="highlighter-rouge">Level -&gt; "Master"</code>, <code class="highlighter-rouge">Keywords -&gt; ul</code>, …)</p>
+
+<p>There’s many more minor changes and fixes that you can read below.</p>
+
+<h2 id="patch-notes">Patch Notes</h2>
+<h3 id="minor">Minor</h3>
+<ul>
+  <li>Added “Other Projects” section to the bottom of the project layout (similar to “Related Posts”)</li>
+  <li>Added CSS classes that make viewing larger (data-) tables possible</li>
+  <li>Added section on tables to <a href="/docs/7.5.2/writing/">docs/writing</a></li>
+  <li>Reduced use of <code class="highlighter-rouge">&lt;hr/&gt;</code> elements, using CSS borders instead.</li>
+  <li>Improved semantic HTML of resume</li>
+  <li>Follow favicon best practices and include example icons</li>
+  <li>Added <code class="highlighter-rouge">no_google_fonts</code> option</li>
+</ul>
+
+<h3 id="design">Design</h3>
+<ul>
+  <li>Reduced number of horizontal lines, making many layouts feel less “cluttered” (esp. <code class="highlighter-rouge">blog</code> layout)</li>
+  <li>Made link hover styles consistent across the board</li>
+  <li>Visually separated <code class="highlighter-rouge">thead</code> and <code class="highlighter-rouge">tbody</code> and <code class="highlighter-rouge">tfoot</code> within tables.</li>
+  <li>Changed RSS and email icons</li>
+  <li>Removed top margin for consecutive headings, e.g. when using <code class="highlighter-rouge">h3</code> immediately after <code class="highlighter-rouge">h2</code>.</li>
+</ul>
+
+<h3 id="fixes">Fixes</h3>
+<ul>
+  <li>Fixed bug that caused inline math to be moved to the end of a paragraph when dynamically loading a page.</li>
+  <li>Fixed bug that caused layout to break in IE11.</li>
+  <li>Fixed bug that caused the project animation to “jump” when using long project titles.</li>
+  <li>No more empty attributes on <code class="highlighter-rouge">img</code> tags.</li>
+</ul>
+
+:ET

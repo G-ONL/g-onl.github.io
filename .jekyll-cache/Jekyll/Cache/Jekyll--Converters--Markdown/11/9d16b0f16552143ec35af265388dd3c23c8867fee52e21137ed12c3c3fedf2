@@ -1,0 +1,4 @@
+I"3<p>This release makes including third party plugins easier.
+Until now, the push state approach to loading new pages has been interfering with embedded <code class="highlighter-rouge">script</code> tags.
+This version changes this by simulating the sequential loading of script tags on a fresh page load.</p>
+:ET

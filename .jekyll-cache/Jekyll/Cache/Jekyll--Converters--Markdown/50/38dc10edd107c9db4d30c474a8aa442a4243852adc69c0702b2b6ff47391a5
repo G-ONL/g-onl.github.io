@@ -1,0 +1,83 @@
+I"X<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+<ol id="markdown-toc">
+  <li><a href="#preparation" id="markdown-toc-preparation">Preparation</a></li>
+  <li><a href="#building-locally" id="markdown-toc-building-locally">Building locally</a></li>
+  <li><a href="#building-locally-with-latent-semantic-analysis" id="markdown-toc-building-locally-with-latent-semantic-analysis">Building locally with latent semantic analysis</a></li>
+  <li><a href="#github-pages" id="markdown-toc-github-pages">GitHub Pages</a></li>
+</ol>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>Before building, make sure the following is part of your config file:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _config.yml</span>
+<span class="na">compress_html</span><span class="pi">:</span>
+  <span class="na">comments</span><span class="pi">:</span>  <span class="pi">[</span><span class="s2">"</span><span class="s">&lt;!--</span><span class="nv"> </span><span class="s">"</span><span class="pi">,</span> <span class="s2">"</span><span class="nv"> </span><span class="s">--&gt;"</span><span class="pi">]</span>
+  <span class="na">clippings</span><span class="pi">:</span> <span class="s">all</span>
+  <span class="na">endings</span><span class="pi">:</span>   <span class="s">all</span>
+
+<span class="na">sass</span><span class="pi">:</span>
+  <span class="na">style</span><span class="pi">:</span>     <span class="s">compressed</span>
+</code></pre></div></div>
+
+<p>You can check out <a href="https://github.com/penibelst/jekyll-compress-html">jekyll-compress-html</a> and
+<a href="https://jekyllrb.com/docs/assets/#sassscss">https://jekyllrb.com/docs/assets/#sassscss</a> for details.</p>
+
+<h2 id="building-locally">Building locally</h2>
+<p>When building Hydejack it is important to set the environment variable <code class="highlighter-rouge">JEKYLL_ENV</code> to <code class="highlighter-rouge">production</code>.
+Otherwise the output will not be minified. Building itself happens via Jekyll’s <code class="highlighter-rouge">build</code> command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+</code></pre></div></div>
+
+<p>This will generate the finished static files in <code class="highlighter-rouge">_site</code>,
+which can be deployed using the methods outlined in the <a href="https://jekyllrb.com/docs/deployment-methods/">Jekyll Documentation</a>.</p>
+
+<h2 id="building-locally-with-latent-semantic-analysis">Building locally with latent semantic analysis</h2>
+<p>By default, related posts are simply the most recent posts.
+Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
+However, the results are still pretty “unrelated”.
+To provide better results, Jekyll supports <a href="https://en.wikipedia.org/wiki/Latent_semantic_analysis">latent semantic analysis</a> via <a href="http://www.classifier-reborn.com/"><code class="highlighter-rouge">classifier-reborn</code></a>’s
+<a href="http://www.classifier-reborn.com/lsi">Latent Semantic Indexer</a></p>
+
+<p>To use the <abbr title="Latent Semantic Indexer">LSI</abbr>, you first have to disable Hydejack’s default behavior,
+by setting <code class="highlighter-rouge">use_lsi: true</code> under the <code class="highlighter-rouge">hydejack</code> key in your config file.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: _config.yml</span>
+<span class="na">hydejack</span><span class="pi">:</span>
+  <span class="na">use_lsi</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Then, you have to run <code class="highlighter-rouge">jekyll build</code> with the <code class="highlighter-rouge">--lsi</code> flag:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build <span class="nt">--lsi</span>
+</code></pre></div></div>
+
+<p>Note that this may take a long time.
+Once it is finished, the generated static files will be located in the <code class="highlighter-rouge">_site</code> directory,
+which can be deployed using the methods outlined in the <a href="https://jekyllrb.com/docs/deployment-methods/">Jekyll Documentation</a>.</p>
+
+<h2 id="github-pages">GitHub Pages</h2>
+<p>To deploy to GitHub Pages, the steps are:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>_site
+<span class="nv">$ </span>git init <span class="c"># you only need to do this once</span>
+<span class="nv">$ </span>git remote add origin &lt;github_remote_url&gt; <span class="c"># you only need to do this once</span>
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Build"</span>
+<span class="nv">$ </span>git push origin master:&lt;remote_branch&gt;
+<span class="nv">$ </span><span class="nb">cd</span> ..
+</code></pre></div></div>
+
+<dl>
+  <dt><code class="highlighter-rouge">github_remote_url</code></dt>
+  <dd>Find this on your repository’s GitHub page.</dd>
+  <dt><code class="highlighter-rouge">remote_branch</code></dt>
+  <dd>Either <code class="highlighter-rouge">master</code> for “user or organization pages”, or <code class="highlighter-rouge">gh-pages</code> for “project pages”</dd>
+</dl>
+
+<p>More on <a href="https://help.github.com/articles/user-organization-and-project-pages/">user, organization, and project pages</a>.</p>
+
+<p class="read-more">Continue with <a href="/docs/7.5.2/advanced/" class="heading flip-title">Advanced</a></p>
+
+:ET

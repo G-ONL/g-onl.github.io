@@ -1,0 +1,17 @@
+I"<h2 id="features">Features</h2>
+<p>Unlike Hyde, it’s very opinionated about how you are going to use it.</p>
+
+<p>Features include:</p>
+
+<ul>
+  <li>Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.</li>
+  <li>Github Pages compatible tag support based on <a href="http://www.minddust.com/post/tags-and-categories-on-github-pages/">this post</a>.</li>
+  <li>Customizable link color and sidebar image, per-site, per-tag and per-post.</li>
+  <li>Optional author section at the bottom of each post.</li>
+  <li>Optional comment section powered by Disqus.</li>
+  <li>Layout for posts grouped by year</li>
+  <li>Wide array of social media icons on sidebar.</li>
+  <li>Math blocks via <a href="https://khan.github.io/KaTeX/">KaTeX</a>.</li>
+</ul>
+
+:ET

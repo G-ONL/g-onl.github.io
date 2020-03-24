@@ -1,0 +1,35 @@
+I"<p>While v7 brings an <a href="/CHANGELOG/#v700">insane amount of new stuff</a>, the most notable change is the new background image.
+It is no longer <em>anti-selling</em> the theme.
+The old image was a blurred version of Napoleon Bonaparte, which was just… weird. I could tell the story of how this came to be,
+but I’d rather show you the new and improved background image.</p>
+
+<h2 id="new-background-image">New background image</h2>
+<p>Yes, it’s an aerial shot of a beach (<a href="https://duckduckgo.com/?q=ios+11+background&amp;t=ffab&amp;iax=images&amp;ia=images">so hot right now</a>).</p>
+
+<p><img src="/assets/img/caleb-george.jpg" alt="Hydejack's background image" class="lead" /></p>
+
+<p>Q: What has this picture to do with Hydejack?
+Nothing really, I just like how it looks.
+However: Boat → Pirates → Hijacking → Hydejack (illuminati confirmed)</p>
+
+<p>Even though it is a free image from <a href="https://unsplash.com/">Unsplash</a> (…), it’s unique in the sense that
+I’ve modified it so it looks better inside the sidebar.
+Specifically, I’ve straightened out the beach and rotated the boat so that it sits at a nice 90 degree angle.</p>
+
+<p>For comparison, here is the non-euclidean mess the <a href="https://unsplash.com/photos/AtvuPUenaeI">original photo</a> was. Pretty OCD, I know.</p>
+
+<p><img src="/assets/img/caleb-george-old.jpg" alt="Original photo" class="lead" /></p>
+
+<h2 id="new-color-palette">New color palette</h2>
+<p>I’ve extracted the major colors from the background image, which now form Hydejack’s color palette:</p>
+
+<p><img src="/assets/img/COLOURlovers.com-Hydejack.png" alt="Hydejacks's color palette" style="border: 1px solid #ddd" /></p>
+
+<h2 id="new-logo">New logo</h2>
+<p>Hydejack also has a new logo, which is based on the new color palette.
+It also features the best font on Google Fonts, and probably the world: <a href="https://fonts.google.com/specimen/Roboto+Slab">Roboto Slab</a>
+(which is to say, I like it a lot).</p>
+
+<p><img src="/assets/icons/icon.png" alt="Hydejack's logo" /></p>
+
+:ET
