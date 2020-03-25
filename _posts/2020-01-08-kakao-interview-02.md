@@ -2,7 +2,7 @@
 layout: post
 title: "카카오 인터뷰 - 02(전화면접 - 1차 면접)"
 comments: true
-tag: job
+category: job
 description: >
   카카오 인터뷰의 모든 것(?) 2탄
   
