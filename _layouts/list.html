@@ -24,14 +24,10 @@ layout: base
 {% assign category = site.featured_categories | where: "slug", page.slug | first %}
 {% if category %}
   {% assign posts = site.categories[page.slug] %}
-  {% assign s_category = site.posts | where:"categories", page.slug%}
-  {% assign posts = posts | concat: s_category %}
 {% else %}
   {% assign tag = site.featured_tags | where: "slug", page.slug | first %}
   {% if tag %}
     {% assign posts = site.tags[page.slug] %}
-    {% assign s_tag = site.posts | where:"tags", page.slug%}
-    {% assign posts = posts | concat: s_tag %}
   {% else %}
     {% assign posts = site.posts %}
   {% endif %}
