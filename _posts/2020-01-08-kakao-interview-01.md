@@ -2,7 +2,7 @@
 layout: post
 title: "카카오 인터뷰 - 01(서류-코딩테스트)"
 comments: true
-category: job
+slug: job
 description: >
   카카오 인터뷰의 모든 것(?)
 ---
