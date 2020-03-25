@@ -1,5 +1,4 @@
 ---
-
 layout: list
 title: Spring
 slug: spring
@@ -10,5 +9,4 @@ accent_color: '#21ad42'
 accent_image:
   background: '#21ad42'
   overlay:    false
-
 ---
