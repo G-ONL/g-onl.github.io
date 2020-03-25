@@ -1,12 +1,12 @@
-﻿---
+---
 layout: post
 title: "카카오 인터뷰 - 01(서류-코딩테스트)"
 comments: true
 category: Job
+slug: [job]
+tags: [job]
 description: >
   카카오 인터뷰의 모든 것(?)
-tags: [Job]
-
 ---
 
 ## 카카오 인터뷰 - 서류/코딩테스트
