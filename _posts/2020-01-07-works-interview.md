@@ -2,7 +2,7 @@
 layout: post
 title: "웍스 모바일 서류 / 면접 / 전환 면접 / 인턴십 후기"
 comments: true
-category: Job
+category: job
 description: >
    웍스 모바일 인턴 채용 과정의 모든 것(?)
 ---
