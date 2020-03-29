@@ -58,15 +58,15 @@ Provider는 다음과 같이 있습니다.
 
 ### 4. Provider 사용해보기
 
-```pubspec.yaml```파일안에서 provider를 추가합니다.
+~~~pubspec.yaml~~~파일안에서 provider를 추가합니다.
 
-```
+~~~
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
   provider: 최신버전
-```
+~~~
 
 
 
