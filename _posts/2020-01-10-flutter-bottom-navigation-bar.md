@@ -182,8 +182,6 @@ class _MyAppState extends State<MyApp> {
 
 밑에 영상을 한 번 보시죠.
 
-{% include video id="_O0PPD1Xfbk" provider="youtube" %}
-
 ~~~
 body: screens[_selectedIdx] 
 ~~~
