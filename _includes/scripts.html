@@ -24,7 +24,7 @@
       loadJSDeferred('https://www.google-analytics.com/analytics.js');
     </script>
   {% endif %}
-
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
   <!--[if gt IE 9]><!---->
   {% capture js_url %}{% link assets/js/hydejack-7.5.2.js %}{% endcapture %}
   <script>loadJSDeferred('{{ js_url | relative_url }}');</script>
