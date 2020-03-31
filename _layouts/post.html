@@ -28,6 +28,11 @@ layout: base
 
 {% assign addons = site.hydejack.post_addons %}
 {% unless addons %}{% assign addons = "about,newsletter,related,random" | split:"," %}{% endunless %}
+<ins class="kakao_ad_area" style="display:none;" 
+ data-ad-unit    = "DAN-1hvbjmnyu52yf" 
+ data-ad-width   = "728" 
+ data-ad-height  = "90"></ins> 
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 {% for addon in addons %}
   {% case addon %}
   {% when 'about' %}
