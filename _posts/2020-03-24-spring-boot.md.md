@@ -2,7 +2,7 @@
 layout: post
 title: "Spring Boot"
 comments: true
-category: Spring
+category: spring
 decription: >
   SpringBoot가 무엇인지, 어떻게 사용하는 것인지에 대해 알아봅시다.
 ---
