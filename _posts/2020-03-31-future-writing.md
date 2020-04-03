@@ -9,6 +9,7 @@ decription: >
 
 ## 써야할 글
 
+### 스프링
 - Spring Boot Test(Junit5)
 - <strong> Spring Boot Test(Junit4) - 작성중</strong>
 - ExceptionHandler, 예외처리 전략
@@ -16,3 +17,8 @@ decription: >
 - Thymeleaf 사용법, 문법 정리
 - Logger
 - Properties
+- Selvet
+
+### 책
+- 객체지향의 사실과 오해
+- Code
