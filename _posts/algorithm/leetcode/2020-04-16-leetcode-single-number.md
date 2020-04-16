@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Increasing Decreasing String (1370)"
+title: "Single Number"
 comments: true
 category: algorithm
 description: >
-  leetcode 1370 문제 (java) 
+  leetcode Single Number 30일 Challenge 문제 (java)
 ---
 
-# Increasing Decreasing String (1370)
+#  Single Numb
 
 ### 문제 내용
 
