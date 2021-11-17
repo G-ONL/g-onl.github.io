@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "OPENSOURCE 시작하기"
+title: "Opensource 시작하기"
 comments: true
 category: opensource
 description: >
-https://naver.github.io/fixture-monkey/ 네이버 오픈소스 Fixture Monkey
+Opensource 참여 순서
 ---
-
 
 # 오픈소스 시작하기
 
