@@ -4,7 +4,7 @@ title: "Opensource 시작하기"
 comments: true
 category: opensource
 description: >
-Opensource 참여 순서
+  Opensource 참여 순서
 ---
 
 # 오픈소스 시작하기
